@@ -7,4 +7,4 @@ var server = app.listen (app.get('port'), () => {
 });
 
 
-module.exports = server;
+//module.exports = server;
