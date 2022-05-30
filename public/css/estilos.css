@@ -1,0 +1,36 @@
+html {background-color: black;}
+a, h1, label {color:azure}
+a:hover {opacity: 75;}
+
+.logo {
+    display: block;
+    margin: 1rem auto;
+    width: 450px;
+    height: 150px;
+    vertical-align: bottom;
+    background: url("../img/nodejs-monitor.png") no-repeat center ;
+    background-size: contain;
+}
+
+.error {
+    font-size: 2rem;
+    padding: 1rem ;
+    background-color: #80bd01;
+    color: fuchsia;
+}
+
+.poster { max-width: 100px;}
+
+.table { width: 100%;}
+
+.table  td, .table th {padding: 1rem;}
+
+.table tr:first-child{
+    background-color: blue;
+    color: #80bd01;
+}
+
+.table tr:nth-child(even) {background-color: azure;}
+
+.table tr:nth-child(odd):not(:first-child) { background-color: aliceblue;}
+

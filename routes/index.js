@@ -9,7 +9,7 @@ var movies = require ('../models/movies');
 function error404(req, res, next)
 {
     let error = new Error();
-        locals = {
+        var locals = {
             title : 'Error 404',
             description : 'Recurso no encontrado',
             error : error
@@ -19,19 +19,17 @@ function error404(req, res, next)
     next();
 };
 
-
-router.get ('/', (req,  res, next) => {
+router.use (movies);
+router.get ('/', (req, res, next) => {
     req.getConnection ((err, movies) => {
       movies.query ('SELECT * FROM movie', (err, rows) => {
-        let locals = {
-            title : 'Lista películas',
-            data : rows
-        };
-        res.render ('index', locals);
+            var locals = {
+                title : 'Lista películas',
+                data : rows
+            };
+            res.render ('index', locals);
       });
-
     });
-    res.send ('<h1>terminamos la configuración </h1>');
 });
 
 router.use (error404);

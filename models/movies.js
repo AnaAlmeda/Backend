@@ -11,6 +11,6 @@ var dbOptions = {
 };
 
 
-Movies = myConnection (mysql, dbOptions, 'request');
+var Movies = myConnection (mysql, dbOptions, 'request');
 
 module.exports = Movies;

@@ -1,0 +1,23 @@
+extends layout.jade 
+
+block content 
+    section.container 
+        div.item.log
+        div.item
+            h1 
+                a(href="/")= title 
+        article.item 
+            -if(data.length)
+                table 
+                    tr 
+                        th Id 
+                        th Titulo 
+                        th Año 
+                        th Puntuacion 
+                        th Poster 
+                        th 
+                        th 
+            -else
+                p.error No existen Peliculas en la Base de datos
+
+
