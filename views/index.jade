@@ -8,16 +8,27 @@ block content
                 a(href="/")= title 
         article.item 
             -if(data.length)
-                table 
+                table.table
                     tr 
                         th Id 
                         th Titulo 
                         th Año 
                         th Puntuacion 
                         th Poster 
-                        th 
-                        th 
+                        th (colspan = '2')
+                          form(action="/agregar", method="GET")
+                            input.button.add(type= "submit", value= "Agregar")
+                    -each movie in data 
+                        tr 
+                            td #{movie.movie_id}
+                            td #{movie.title}
+                            td #{movie.estreno}
+                            td #{movie.rating}
+                            td 
+                                img.poster(src= "#{movie.image}", alt="#{movie.title}")
+                            td 
+                                form(action="/editar", method="GET")
+                                input.button.add(type= "submit", value= "Editar")
+                            td eliminar
             -else
                 p.error No existen Peliculas en la Base de datos
-
-

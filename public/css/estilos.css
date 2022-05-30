@@ -1,6 +1,11 @@
-html {background-color: black;}
-a, h1, label {color:azure}
+html {background-color: white;}
+a, h1, h2, label {color:aquamarine}
 a:hover {opacity: 75;}
+
+fieldset {
+    padding: 1rem;
+    border: medium solid #80bd01;
+}
 
 .logo {
     display: block;
@@ -30,7 +35,18 @@ a:hover {opacity: 75;}
     color: #80bd01;
 }
 
-.table tr:nth-child(even) {background-color: azure;}
+.table tr:nth-child(even) {background-color:  #d7bde2;}
 
-.table tr:nth-child(odd):not(:first-child) { background-color: aliceblue;}
+.table tr:nth-child(odd):not(:first-child) { background-color: #EEE;}
+
+.button {
+    padding: .5rem 1rem;
+    color: #FFF;
+    background-color: #80bd01;
+    cursor: pointer;
+}
+
+.button:hover { opacity: .75;}
+
+.add { background: #0B0;}
 
