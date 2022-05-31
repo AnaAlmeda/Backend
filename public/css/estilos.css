@@ -49,4 +49,5 @@ fieldset {
 .button:hover { opacity: .75;}
 
 .add { background: #0B0;}
+.delete { background-color: red;}
 

@@ -27,8 +27,19 @@ block content
                             td 
                                 img.poster(src= "#{movie.image}", alt="#{movie.title}")
                             td 
-                                form(action="/editar", method="GET")
-                                input.button.add(type= "submit", value= "Editar")
-                            td eliminar
+                                form(action="/editar/#{movie.movie_id}", method="GET")
+                                    input.button.add(type= "submit", value= "Editar")
+                            td 
+                                form(action="/eliminar/#{movie.movie_id}", method="GET")
+                                    input.button.delete(type= "button", value= "Eliminar", onclick= "eliminar (this)")
+
+                script.
+                        function eliminar (input)
+                        {
+                            var Borrar = confirm ('¿Desea borrar?')
+                            return (borrar) ? input.parentNode.submit() : false
+                        }
+
+
             -else
                 p.error No existen Peliculas en la Base de datos

@@ -58,6 +58,28 @@ router.post('/', (req,res,next) => {
     });
 });
 
+
+// con esta funcion realizo la modificacion (editar)
+router.get('/editar/:movie_id', (req,res,next) => {
+    let movie_id = req.params.movie_id;
+    console.log(movie_id);
+    req.getConnection((err,movies) => {
+        movies.query('SELECT * FROM movie WHERE movie_id = ?', movie_id, (err,rows) =>{
+            console.log(err, '---', rows);
+            if (err){
+                throw(err);
+            }else{
+                let locals = {
+                    title: 'Editar pelicula',
+                    data: rows
+                };
+                res.render('edit-movie', locals);
+            }
+
+        });
+
+    });
+});
 router.use (error404);
 
 module.exports = router;
