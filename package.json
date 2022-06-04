@@ -1,7 +1,7 @@
 {
   "name": "proyecto-nodejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "API REST",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,9 @@
   "keywords": [
     "API",
     "CRUD",
-    "MySQL"
+    "MySQL",
+    "REST",
+    "MVC"
   ],
   "author": "AnaAlmeda",
   "license": "MIT",
@@ -32,9 +34,10 @@
     "passport-local": "^1.0.0",
     "responsimple": "^1.0.1",
     "serve-favicon": "^2.5.0",
-    "timeago.js": "^4.0.2"
+    "timeago.js": "^4.0.2",
+    "express-method-override": "^0.0.3"
   },
-  "devDependencies": {
+  "devDependencies": { 
     "nodemon": "^2.0.15"
   }
 }

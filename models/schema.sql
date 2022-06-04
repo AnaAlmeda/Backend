@@ -1,12 +1,14 @@
-CREATE DATABASE IF NOT EXISTS movies;
+CREATE DATABASE IF NOT EXISTS Clientes;
 
-USE movies;
+USE clientes;
 
 
-CREATE TABLE movie (
-    movie_id VARCHAR (9) PRIMARY KEY NOT NULL,
-    title VARCHAR (100),
-    release VARCHAR (4),
-    rating DECIMAL (2 , 1),
-    image VARCHAR (255)
+CREATE TABLE clientes (
+    cliente_id VARCHAR (9) PRIMARY KEY NOT NULL,
+    nombre VARCHAR (100),
+    apellido VARCHAR (4),
+    edad INTEGER,
+    foto VARCHAR (255),
+    direccion VARCHAR (255),
+    telefono  VARCHAR (255)
 );
