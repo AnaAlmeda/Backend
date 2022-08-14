@@ -8,8 +8,10 @@ const path = require ('path');
 const Joi = require('@hapi/joi');
 const jtoken = require('jsonwebtoken');
 
-
-
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/*********************** USUARIOS ***************************************************/
 
 
 const schemaRegister = Joi.object({
@@ -23,6 +25,66 @@ const schemaLogin = Joi.object({
     password: Joi.string().min(6).max(1024).required()
 });
 
+//Validacion del logueo
+ClientController.loginOK = (req ,res, next) => {  
+    //realizo la primera validacion de los campos del login
+    const { error } = schemaLogin.validate(req.body)
+    if (error) {
+        return res.status(400).json(
+            {description: 'ups! problemas para ingresar',
+             data:{message:error.details[0].message}}
+        )
+    }
+
+    //asigno los valores a constantes
+    const mail =  req.body.mail;
+    const pass = req.body.password;
+    
+
+    //Modelo para verificar si el mail existe
+    ClientModel.verificar(mail)
+        .then(async (rows) => {
+            let locals = {
+                status: 'ok',
+                desc: 'el usuario existe',
+                data: rows[0]
+            }
+            //res.json(locals.data.password)
+            const validPassword = await bcryptjs.compare(pass, locals.data.password);
+            if (!validPassword)
+            {
+                let data = {
+                    message: 'Constrasenia incorrecta senora'
+                };
+                throw(data);
+            }else{
+                const nombre = locals.data.nombre;
+                const iduser = locals.data.id_user;
+
+                //Token
+                const token = jtoken.sign({
+                    name: nombre,
+                    id: iduser
+                }, process.env.TOKEN_SECRET)
+
+                console.log(token);
+
+                res.header('auth-token', token).json({
+                    data: {token}
+                })
+            }
+        })       
+        .catch(err => {            
+            console.log(err);
+            let locals = {
+                description: 'ups! problemas para ingresar',
+                data: err
+            }
+            res.status (405).json(locals);    
+        });
+        
+};
+
 // Controller para el error
 ClientController.error404= (req, res, next) => {
     let error = new Error();
@@ -34,12 +96,6 @@ ClientController.error404= (req, res, next) => {
     error.status = 404;
     res.render ('error',locals);
     next();
-};
-
-
-//muestra el formulario de login
-ClientController.registro = (req,res, next) => {
-    res.render ('registro');
 };
 
 
@@ -97,76 +153,33 @@ ClientController.registroOK = async (req ,res, next) => {
 };
 
 
-//Pagina para loguearse
-ClientController.login = async (req,res, next) => {
-    res.render ('login');
-};
-
-//Validacion del logueo
-ClientController.loginOK = (req ,res, next) => {  
-    //realizo la primera validacion de los campos del login
-    const { error } = schemaLogin.validate(req.body)
-    if (error) {
-        return res.status(400).json(
-            {error: error.details[0].message}
-        )
-    }
-
-    //asigno los valores a constantes
-    const mail =  req.body.mail;
-    const pass = req.body.password;
-    
-
-    //Modelo para verificar si el mail existe
-    ClientModel.verificar(mail)
-        .then(async (rows) => {
-            //console.log('Usuarios:', rows)
-            let locals = {
-                status: 'ok',
-                desc: 'el usuario existe',
-                data: rows[0]
-            }
-            //res.json(locals.data.password)
-            const validPassword = await bcryptjs.compare(pass, locals.data.password);
-            if (!validPassword)
-            {
-                return res.status(400).json({ error: 'contraseña no válida' });
-            }else{
-                const nombre = locals.data.nombre;
-                const iduser = locals.data.id_user;
 
 
-                
-                const token = jtoken.sign({
-                    name: nombre,
-                    id: iduser
-                }, process.env.TOKEN_SECRET)
 
 
-                res.header('auth-token', token).json({
-                    error: null,
-                    data: {token}
-                })
 
-                /*res.json({
-                    error: null,
-                    data: 'exito bienvenido',
-                    token: jtoken,
-                    nombre,
-                    iduser
-                });*/
-            }
-        })       
-        .catch(err => {
-            let locals = {
-                status: 'error',
-                desc: 'No le devuelve ningun valor, error',
-                data: err
-            }
-            res.json(locals)        
-        });
-        
-};
+
+
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/************************** PROVEEDORES *********************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/************************** EQUIPOS ************************************************/
 
 
 //prueba de una ruta protegida
@@ -181,66 +194,14 @@ ClientController.protegida = (req, res, next) => {
 };
 
 
-
+   
 
 module.exports = ClientController;
 
 
 
 
-    
-
-    
-    /*if(validPassword){
-        return res.json ({
-            message: 'loginOK'
-        });
-    }else{
-        return res.json ({
-            message: 'problemas con login'
-        });
-    }*/
-    /*ClientModel.verificarMail(mail, async(error,results)=>{
-        if (results.length == 0 ){
-            return res.status(400).json({ error: 'Usuario no encontrado' });
-        }else{
-            const validPassword = await bcryptjs.compare(pass, results[0].password);
-            if (!validPassword)
-            {
-                return res.status(400).json({ error: 'contraseña no válida' });
-            }else{
-                res.json({
-                    error: null,
-                    data: 'exito bienvenido'
-                });
-            }
-        }*/
-
-    
-    
-    
-/*
-
-    try {    
-        ClientModel.verificarMail(mail, async(error,results)=>{
-            if (results.length == 0 ){
-                return res.status(400).json({ error: 'Usuario no encontrado' });
-            }else{
-                if (!validPassword)
-                {
-                    return res.status(400).json({ error: 'contraseña no válida' });
-                }else{
-                    res.json({
-                        error: null,
-                        data: 'exito bienvenido'
-                    });
-                }
-            }
-        });
-    } catch (error) {
-        return res.status(400).json({ error: 'Problemas conectandose con la bd' });
-    };*/
-/*
+        
 
 
 //Llamo al modelo y a la vista que me devolvera todos los valores guardados en la base de datos

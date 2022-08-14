@@ -2,31 +2,114 @@
 
 var express = require ('express');
 const ClientController = require('../controllers/client-controller');
+const ProjectController = require('../controllers/project-controller');
+const ProviderController = require('../controllers/providers-controller');
 var router = express.Router();
 const verifyToken = require('./validate-token');
 
 
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/*********************** USUARIOS ***************************************************/
 
 
-
-//mostrar los datos
-router.get ('/registro',ClientController.registro);
 
 //prueba de una ruta protegida
-router.get('/protegida', verifyToken, ClientController.protegida);
+//router.get('/protegida', verifyToken, ClientController.protegida);
 
 
 
 //alta de usuario
-router.post('/registroOK', ClientController.registroOK);
+//router.post('/registroOK', ClientController.registroOK);
 
 
 
 //Login del usuario
-router.get ('/login',ClientController.login);
+//router.get ('/login',ClientController.login);
 
 //el usuario ya ingreso al sistema
 router.post('/loginOK', ClientController.loginOK);
+
+
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/************************** PROYECTOS ************************************************/
+
+
+//alta de proyecto
+router.post('/altaProyecto', ProjectController.crearProyecto);
+
+
+
+
+
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/************************** PROVEEDORES ************************************************/
+router.post('/altaProveedor', ProviderController.altaProveedor);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
@@ -64,4 +147,3 @@ router.get ('/register', ClientController.register);
 router.post ('/ingreso',ClientController.Ingreso)
 */
 
-module.exports = router;
