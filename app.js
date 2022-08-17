@@ -12,7 +12,7 @@ require ('dotenv').config();
 //const faviconURL = __dirname + '/public/img/node-favicon.png';
 const publicDir = express.static(__dirname + '/public');
 const viewDir = __dirname + '/views';
-const port = (process.env.PORT || 8100);
+const port = (process.env.PORT || 8200);
 const app = express();
 const cors = require ('cors');
 

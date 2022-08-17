@@ -53,8 +53,8 @@ ProjectController.crearProyecto = (req, res, next) => {
 
 
 ProjectController.allProjects = (req, res, next) => {
-    console.log('hola')
-   /* ProjectModel.allProjects()
+    console.log('hola');
+    ProjectModel.allProjects()
       .then(rows => {
         console.log(rows)
         let locals = {
@@ -71,7 +71,7 @@ ProjectController.allProjects = (req, res, next) => {
           data: err
         }
         res.json(locals)
-      })*/
+      })
   };
 
 
