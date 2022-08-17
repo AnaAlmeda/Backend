@@ -41,6 +41,9 @@ router.post('/loginOK', ClientController.loginOK);
 //alta de proyecto
 router.post('/altaProyecto', ProjectController.crearProyecto);
 
+//busqueda de proyectos
+router.get ('/allProyectos', ProjectController.allProjects);
+
 
 
 

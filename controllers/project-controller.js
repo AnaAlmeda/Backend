@@ -51,6 +51,30 @@ ProjectController.crearProyecto = (req, res, next) => {
 };
 
 
+
+ProjectController.allProjects = (req, res, next) => {
+    console.log('hola')
+   /* ProjectModel.allProjects()
+      .then(rows => {
+        console.log(rows)
+        let locals = {
+          status: 'ok',
+          desc: 'Usuario Encontrado',
+          data: rows
+        }
+        res.json(locals)
+      })
+      .catch(err => {
+        let locals = {
+          status: 'error',
+          desc: 'Error al Encontrar al Usuario',
+          data: err
+        }
+        res.json(locals)
+      })*/
+  };
+
+
 module.exports = ProjectController;
 
 
