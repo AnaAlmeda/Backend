@@ -9,7 +9,7 @@ var ProjectController = () => {};
 /**********************************************************************************/
 /**********************************************************************************/
 /**********************************************************************************/
-/************************** PROYECTOS ************************************************/
+/************************** PROYECTOS - ABM****************************************/
 
 ProjectController.crearProyecto = (req, res, next) => {
     let proyecto= req.body;
@@ -50,14 +50,13 @@ ProjectController.crearProyecto = (req, res, next) => {
 };
 
 
-
 ProjectController.allProjects = (req, res, next) => {
     console.log('hola');
     ProjectModel.allProjects()
       .then(rows => {
         console.log(rows)
         let locals = {
-          desc: 'Usuario Encontrado',
+          desc: 'listando proyectos, ok',
           data: rows
         }
         res.json(locals)
@@ -65,7 +64,7 @@ ProjectController.allProjects = (req, res, next) => {
       .catch(err => {
         let locals = {
           status: 'error',
-          desc: 'Error al Encontrar al Usuario',
+          desc: 'Error al Encontrar al proyecto',
           data: err
         }
         res.json(locals)
@@ -114,6 +113,14 @@ ProjectController.deleteProject = (req, res, next) => {
       res.status(403).json(locals)
     })
 };
+
+
+
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/************************** PROYECTOS - CREAR PDF**********************************/
+
 
 
 

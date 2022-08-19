@@ -23,7 +23,6 @@ ProjectModel.insertProject = (data) => {
 
 ProjectModel.allProjects = () =>{
     let promise = new Promise (async(resolve, reject) =>{
-          //console.log(id)
           const [rows,fields] = await conexion.query('SELECT * FROM proyectos')
           .catch((err) =>{
                 reject(err)
