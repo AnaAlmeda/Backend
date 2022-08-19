@@ -44,6 +44,12 @@ router.post('/altaProyecto', ProjectController.crearProyecto);
 //busqueda de proyectos
 router.get ('/allProyectos', ProjectController.allProjects);
 
+//editar proyectos
+router.put ('/editarProyecto',ProjectController.editProject);
+
+//eliminar proyecto
+router.delete('/eliminarProyecto',ProjectController.deleteProject)
+
 
 
 
