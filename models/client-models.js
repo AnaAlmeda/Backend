@@ -31,23 +31,6 @@ ClientModel.verificar = (id) => {
 
 
 
-/**********************************************************************************/
-/**********************************************************************************/
-/**********************************************************************************/
-/************************** PROYECTOS **********************************************/
-ClientModel.insertProyecto = (data) => {
-    let promise = new Promise (async (resolve, reject) => {
-        const res = await conexion.query('INSERT INTO proyectos SET ?', data)
-        .catch((err) =>{
-                reject(err)
-        })
-        resolve (res)
-    })
-return promise
-}
-
-
-
 
 /*
 
