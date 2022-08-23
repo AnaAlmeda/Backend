@@ -24,7 +24,7 @@ app.set ('views', viewDir);
 app.set ('view engine', 'hbs'); 
 app.set ('port', port);
 var corsOptions = {
-    origin: 'http://localhost:9000', // Reemplazar con dominio
+    origin: 'http://localhost:9001', // Reemplazar con dominio
 }
 app.use(cors(corsOptions));
 
